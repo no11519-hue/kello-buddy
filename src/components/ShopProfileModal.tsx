@@ -112,7 +112,8 @@ export function ShopProfileModal({ user }: ShopProfileModalProps) {
                 }, { onConflict: 'user_id' });
 
             if (upsertError) {
-                throw new Error("정보 저장에 실패했습니다.");
+                console.error("Upsert error details:", upsertError);
+                throw new Error(`저장 오류: ${upsertError.message} (코드: ${upsertError.code})`);
             }
 
             toast({
