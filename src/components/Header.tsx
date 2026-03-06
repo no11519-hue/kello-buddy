@@ -17,12 +17,18 @@ const Header = () => {
     }, []);
 
     const loginWithGoogle = async () => {
-        await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: window.location.origin
-            }
-        });
+        try {
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: window.location.origin
+                }
+            });
+            if (error) throw error;
+        } catch (error: any) {
+            console.error('Google login error:', error);
+            alert('로그인 중 오류가 발생했습니다: ' + error.message);
+        }
     };
 
     const logout = async () => {
