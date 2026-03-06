@@ -7,7 +7,21 @@ const Header = () => {
     const [user, setUser] = useState<any>(null);
 
     useEffect(() => {
-        supabase.auth.getSession().then(({ data: { session } }) => {
+        // OAuth 리다이렉트 시 발생한 에러가 URL에 포함되어 있는지 확인합니다.
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        const queryParams = new URLSearchParams(window.location.search);
+        const errorDesc = hashParams.get('error_description') || queryParams.get('error_description');
+
+        if (errorDesc) {
+            alert('인증 오류 발생: ' + decodeURIComponent(errorDesc).replace(/\+/g, ' '));
+            // 에러 확인 후 URL 깔끔하게 정리
+            window.history.replaceState(null, '', window.location.pathname);
+        }
+
+        supabase.auth.getSession().then(({ data: { session }, error }) => {
+            if (error) {
+                console.error("Session fetch error:", error);
+            }
             setUser(session?.user ?? null);
         });
 
