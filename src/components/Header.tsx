@@ -49,6 +49,12 @@ const Header = () => {
                             <span className="text-sm font-medium text-muted-foreground hidden md:inline-block">
                                 {user.email || '로그인 됨'}
                             </span>
+                            <a
+                                href="/dashboard"
+                                className="px-4 py-2 bg-gradient-accent text-white rounded-md font-bold text-sm hover:opacity-90 transition-colors shadow-sm"
+                            >
+                                내 매장 관리
+                            </a>
                             <button
                                 onClick={logout}
                                 className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md font-bold text-sm hover:bg-secondary/80 transition-colors"
