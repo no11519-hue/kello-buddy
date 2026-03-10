@@ -41,17 +41,15 @@ const CTAFormSection = () => {
         >
           <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Partner Application</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-              지금 바로 글로벌 매출의
-              <br />
-              주인공이 되세요.
+            <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4 break-keep">
+              외국인 고객을 받을<br />준비가 되셨나요?
             </h2>
-            <p className="text-muted-foreground">
-              파트너 신청은 한정 수량으로 마감될 수 있습니다.
+            <p className="text-lg md:text-xl text-muted-foreground font-medium break-keep mt-4">
+              KELLO와 함께 외국인 고객을 매장으로 연결하세요.
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 md:p-10 shadow-kello-card border border-border space-y-5">
+          <form onSubmit={handleSubmit} className="glass-card rounded-3xl p-8 md:p-10 space-y-5 relative z-10">
             <div>
               <label className="block text-sm font-semibold text-foreground mb-2">업체명</label>
               <input
@@ -116,10 +114,10 @@ const CTAFormSection = () => {
 
             <button
               type="submit"
-              className="w-full bg-gradient-accent text-accent-foreground font-bold py-4 rounded-xl text-lg shadow-kello hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
+              className="w-full bg-gradient-accent text-accent-foreground font-bold py-5 rounded-xl text-xl shadow-kello hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 mt-4"
             >
-              <Send className="h-5 w-5" />
-              파트너 신청하기
+              <Send className="h-6 w-6" />
+              제휴 문의하기
             </button>
           </form>
           <SurveyDialog open={surveyOpen} onOpenChange={setSurveyOpen} />

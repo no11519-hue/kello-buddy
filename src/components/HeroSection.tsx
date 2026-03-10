@@ -4,23 +4,33 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="한국 거리를 즐기는 외국인 관광객들" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+    <section className="bg-slate-950 flex flex-col w-full">
+      {/* Top Video Area */}
+      <div className="relative w-full h-[45vh] lg:h-[55vh]">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={heroBg}
+          className="w-full h-full object-cover"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+          {/* Fallback if video tag is not supported */}
+          <img src={heroBg} alt="한국 거리를 즐기는 외국인 관광객들" className="w-full h-full object-cover" />
+        </video>
+        {/* Soft gradient to blend with the dark background below */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
       </div>
 
-      {/* Content */}
-      <div className="container relative z-10 mx-auto px-6 py-32">
+      {/* Content Area Below the Video */}
+      <div className="container relative z-10 mx-auto px-6 pb-24 pt-12 md:pb-32 flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-3xl mx-auto text-center flex flex-col items-center"
+           initial={{ opacity: 0, y: 30 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.8 }}
+           className="max-w-3xl mx-auto flex flex-col items-center"
         >
-
-
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -32,44 +42,23 @@ const HeroSection = () => {
             <span className="text-sm font-medium text-primary-foreground/90">사장님 전용 파트너 제휴</span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-gradient-hero mb-6">
-            놓치던 외국인 예약,{" "}
-            <br className="hidden md:block" />
-            이제 매출로 연결하세요
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-gradient-hero mb-6 break-keep drop-shadow-md">
+            외국인 손님이 매출이 됩니다
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-primary-foreground/80 leading-relaxed mb-10 font-light max-w-4xl mx-auto break-keep whitespace-nowrap md:whitespace-normal">
-            한국 번호 인증 장벽 때문에 놓치던 외국인 고객, Kello 로 쉽게 잡으세요
+          <p className="text-base sm:text-lg md:text-2xl text-primary-foreground/90 leading-relaxed mb-10 font-medium max-w-4xl mx-auto break-keep">
+            KELLO는 외국인 관광객이<br className="hidden md:block" />
+            한국 매장을 쉽게 예약하도록 연결합니다
           </p>
-
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-8 mb-10">
-            {[
-              { number: "1,900만+", label: "연간 방문 관광객" },
-              { number: "80%", label: "자유여행객 비율" },
-              { number: "0원", label: "초기 입점 비용" },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.15 }}
-                className="text-center"
-              >
-                <div className="text-2xl md:text-3xl font-black text-kello-gold">{stat.number}</div>
-                <div className="text-xs text-primary-foreground/60 mt-1">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
 
           <motion.a
             href="#cta-form"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground font-bold px-8 py-4 rounded-full text-lg shadow-kello-glow hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground font-bold px-8 py-5 rounded-full text-xl shadow-kello-glow hover:scale-105 transition-transform"
           >
-            <Phone className="h-5 w-5" />
-            파트너 신청하기
+            <Phone className="h-6 w-6" />
+            외국인 고객 받기 시작하기
           </motion.a>
         </motion.div>
       </div>
