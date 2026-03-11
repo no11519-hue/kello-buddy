@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import KelloText from "./KelloText";
 
 interface SurveyDialogProps {
   open: boolean;
@@ -89,7 +90,7 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">사장님이 Kello에 바라는 서비스</DialogTitle>
+          <DialogTitle className="text-xl font-bold">사장님이 <KelloText />에 바라는 서비스</DialogTitle>
           <DialogDescription>간단한 설문에 답해주시면 더 나은 서비스를 만드는 데 큰 도움이 됩니다.</DialogDescription>
         </DialogHeader>
 

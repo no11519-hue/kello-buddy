@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Languages, Smartphone, Globe2, TrendingUp } from "lucide-react";
+import KelloText from "./KelloText";
 
 const solutions = [
   {
@@ -32,6 +33,7 @@ const SolutionSection = () => {
   return (
 <section className="py-24 bg-spring-peach relative overflow-hidden">
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.1) 0%, transparent 50%)" }} />
+      <div className="absolute top-0 right-1/4 w-80 h-80 bg-kello-gold/10 rounded-full blur-3xl -translate-y-1/2" />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,7 +43,7 @@ const SolutionSection = () => {
         >
           <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Solution</span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 sm:mb-6 leading-tight break-keep">
-            KELLO가 외국인 고객과<br />사장님을 연결해드립니다
+            <KelloText />가 외국인 고객과<br />사장님을 연결해드립니다
           </h2>
         </motion.div>
 

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import KelloText from "./KelloText";
 
 const graphData = [
   {
@@ -21,7 +22,8 @@ const graphData = [
 const RevenueGraphSection = () => {
   return (
     <section className="py-24 bg-spring-yellow relative overflow-hidden">
-      <div className="container mx-auto px-6">
+      <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

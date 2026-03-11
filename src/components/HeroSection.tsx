@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Globe, Phone, TicketPercent } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import KelloText from "./KelloText";
 
 const HeroSection = () => {
   return (
@@ -45,8 +46,8 @@ const HeroSection = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-foreground mb-6 break-keep drop-shadow-md">
             외국인 손님이 매출이 됩니다
           </h1>
-          <p className="text-base sm:text-lg md:text-2xl text-foreground/80 leading-relaxed mb-10 font-bold max-w-4xl mx-auto break-keep">
-            KELLO는 외국인 관광객이<br className="hidden md:block" />
+          <p className="text-sm sm:text-base md:text-2xl text-foreground/80 leading-relaxed mb-10 font-bold max-w-4xl mx-auto break-keep">
+            <KelloText />는 외국인 관광객이<br className="hidden md:block" />
             한국 매장을 쉽게 예약하도록 연결합니다
           </p>
 
@@ -77,7 +78,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-4 text-center sm:text-left">
               <TicketPercent className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600 hidden sm:block" />
               <h3 className="text-xl sm:text-2xl font-black text-amber-900 break-keep leading-tight drop-shadow-sm">
-                2026년은 KELLO 초기 파트너에게<br className="hidden sm:block" />
+                2026년은 <KelloText /> 초기 파트너에게<br className="hidden sm:block" />
                 <span className="text-red-500 border-b-2 border-red-500 font-extrabold mt-1 inline-block text-2xl sm:text-3xl">무료로 제공합니다.</span>
               </h3>
             </div>
@@ -85,7 +86,7 @@ const HeroSection = () => {
             <p className="text-amber-900/90 font-bold leading-relaxed break-keep mb-6 text-base md:text-lg border-t border-amber-900/20 pt-4">
               플랫폼 초기 확장을 위해<br />
               2026년 동안은 제휴 매장이<br />
-              KELLO 서비스를 무료로 사용할 수 있습니다.
+              <KelloText /> 서비스를 무료로 사용할 수 있습니다.
             </p>
             <p className="text-amber-900 font-black break-keep text-lg md:text-xl drop-shadow-sm">
               외국인 고객을 먼저 만나보는 기회,<br />

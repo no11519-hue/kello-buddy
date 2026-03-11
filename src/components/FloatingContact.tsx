@@ -18,11 +18,11 @@ const FloatingContact = () => {
             <h4 className="font-bold text-foreground text-sm mb-3">문의하기</h4>
             <div className="space-y-3">
               <a
-                href="mailto:partner@kello.kr"
+                href="mailto:hot6pent@gmail.com"
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-4 w-4 shrink-0" />
-                partner@kello.kr
+                hot6pent@gmail.com
               </a>
               <a
                 href="tel:010-0000-0000"
@@ -32,7 +32,8 @@ const FloatingContact = () => {
                 010-0000-0000
               </a>
             </div>
-            <p className="text-xs text-muted-foreground mt-3">
+            <p className="text-xs text-muted-foreground mt-4 leading-relaxed bg-primary/5 p-3 rounded-xl">
+              <span className="font-semibold text-primary block mb-1">친절히 답변해 드리겠습니다! 😊</span>
               평일 10:00 – 18:00 운영
             </p>
           </motion.div>

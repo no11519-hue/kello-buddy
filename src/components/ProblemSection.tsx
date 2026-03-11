@@ -30,7 +30,7 @@ const ProblemSection = () => {
     <section className="py-24 bg-spring-pink relative overflow-hidden">
       <div className="absolute top-0 right-0 w-80 h-80 bg-kello-coral/5 rounded-full blur-3xl -translate-y-1/3" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl translate-y-1/3" />
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,10 +38,8 @@ const ProblemSection = () => {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <div className="bg-primary/5 border-l-4 border-primary p-4 sm:p-6 rounded-r-xl mb-6 text-left max-w-fit mx-auto relative shadow-sm">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight break-keep flex items-center gap-2 sm:gap-3">
-              <span className="text-primary text-2xl sm:text-4xl">“</span>
-              사장님들 외국인 고객손님 불편하셨죠?
-              <span className="text-primary text-2xl sm:text-4xl">”</span>
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight tracking-tight whitespace-nowrap">
+              "사장님들 외국인 고객손님 불편하셨죠?"
             </h2>
           </div>
           <div className="text-lg md:text-xl text-muted-foreground font-medium leading-relaxed break-keep flex flex-col gap-5 mt-6 max-w-3xl mx-auto text-left">
@@ -57,7 +55,9 @@ const ProblemSection = () => {
               <span className="font-bold text-kello-gold text-sm md:text-base mb-2 block">신뢰 장벽</span>
               <p className="text-foreground">"정보가 부족한 외국인들이 가격에 의심을 가지고 신뢰가 부족해요."</p>
             </div>
-            <strong className="text-primary mt-6 sm:mt-8 mb-4 block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight drop-shadow-sm">KELLO는 이 문제를 완벽하게 해결합니다.</strong>
+            <strong className="text-primary mt-6 sm:mt-8 mb-4 block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight drop-shadow-sm">
+              <span className="font-black bg-clip-text text-transparent" style={{ backgroundImage: "var(--kello-gradient-hero)" }}>Kello</span>는 이 문제를 완벽하게 해결합니다.
+            </strong>
           </div>
         </motion.div>
 

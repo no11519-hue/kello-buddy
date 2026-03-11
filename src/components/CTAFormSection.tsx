@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Send } from "lucide-react";
+import { Send, MapPin, Building2, User, Phone, Mail } from "lucide-react";
+import KelloText from "./KelloText";
 import { useState } from "react";
 import { toast } from "sonner";
 import SurveyDialog from "./SurveyDialog";
@@ -29,10 +30,9 @@ const CTAFormSection = () => {
   };
 
   return (
-    <section id="cta-form" className="py-24 bg-spring-yellow relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-kello-gold/5 rounded-full blur-3xl translate-y-1/3" />
-      <div className="container mx-auto px-6">
+    <section id="cta" className="py-24 bg-card relative overflow-hidden border-t border-border">
+      <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,11 +41,12 @@ const CTAFormSection = () => {
         >
           <div className="text-center mb-12">
             <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Partner Application</span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4 break-keep">
-              외국인 고객을 받을<br />준비가 되셨나요?
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-4 break-keep">
+              지금 <KelloText />와 함께<br />
+              새로운 매출을 만들어보세요
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground font-medium break-keep mt-4">
-              KELLO와 함께 외국인 고객을 매장으로 연결하세요.
+              <KelloText />와 함께 외국인 고객을 매장으로 연결하세요.
             </p>
           </div>
 

@@ -1,25 +1,26 @@
 import { motion } from "framer-motion";
-import { Search, MapPin, CheckCircle2 } from "lucide-react";
+import { Search, MapPin, CalendarCheck } from "lucide-react";
+import KelloText from "./KelloText";
 
 const steps = [
   {
     icon: Search,
     num: "1",
-    title: "외국인이 여행 준비 중\nK-뷰티 체험 검색",
+    title: <>외국인이 여행 준비 중<br/>K-뷰티 체험 검색</>,
     desc: "",
     color: "from-blue-400 to-blue-600",
   },
   {
     icon: MapPin,
     num: "2",
-    title: "KELLO 플랫폼에서\n예약 가능한 매장 발견",
+    title: <><KelloText /> 플랫폼에서<br/>예약 가능한 매장 발견</>,
     desc: "",
     color: "from-kello-gold to-accent",
   },
   {
-    icon: CheckCircle2,
+    icon: CalendarCheck,
     num: "3",
-    title: "예약 → 선결제 → 매장방문",
+    title: <>예약 → 선결제 → 매장방문</>,
     desc: "",
     color: "from-kello-green to-emerald-600",
   },
@@ -30,7 +31,7 @@ const CustomerFlowSection = () => {
     <section className="py-24 bg-spring-purple relative overflow-hidden">
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-kello-gold/5 rounded-full blur-3xl" />
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
