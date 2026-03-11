@@ -136,25 +136,22 @@ const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialo
 
       console.log('partner payload:', payload);
 
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('partner_applications')
-        .insert([payload])
-        .select();
+        .insert([payload]);
 
-      console.log('insert data:', data);
       console.log('insert error:', error);
 
       if (error) {
         alert(`저장 실패: ${error.message}`);
         throw error;
       }
-      
+
+      alert('제휴 신청이 정상 등록되었습니다.');
       toast.success("설문이 완료되었습니다. 감사합니다!");
       setSubmitted(true);
     } catch (err: any) {
       console.error("Survey submission failed: ", err);
-      // Fallback toast error in case it's not handled by the alert
-      toast.error("알 수 없는 이유로 제출이 실패했습니다. 나중에 다시 시도해주세요.");
     } finally {
       setIsSubmitting(false);
     }
