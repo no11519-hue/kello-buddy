@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Send, MapPin, Building2, User, Phone, Mail } from "lucide-react";
+import { Send } from "lucide-react";
 import KelloText from "./KelloText";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -17,6 +17,8 @@ const CTAFormSection = () => {
     email: "",
   });
   const [surveyOpen, setSurveyOpen] = useState(false);
+  // 제출 시점의 기본정보를 스냅샷으로 보존 → SurveyDialog에 안정적으로 전달
+  const [pendingBasicInfo, setPendingBasicInfo] = useState<typeof form | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,12 +26,14 @@ const CTAFormSection = () => {
       toast.error("모든 항목을 입력해주세요.");
       return;
     }
-    // Only open the survey dialog, keep data intact
+    // 현재 form 값을 스냅샷으로 저장 후 모달 오픈
+    setPendingBasicInfo({ ...form });
     setSurveyOpen(true);
   };
 
   const handleSurveyComplete = () => {
     setForm({ businessName: "", region: "", category: "", contact: "", email: "" });
+    setPendingBasicInfo(null);
     setSurveyOpen(false);
   };
 
@@ -125,12 +129,15 @@ const CTAFormSection = () => {
               제휴 문의하기
             </button>
           </form>
-          <SurveyDialog 
-            open={surveyOpen} 
-            onOpenChange={setSurveyOpen} 
-            basicInfo={form}
-            onComplete={handleSurveyComplete}
-          />
+
+          {pendingBasicInfo && (
+            <SurveyDialog
+              open={surveyOpen}
+              onOpenChange={setSurveyOpen}
+              basicInfo={pendingBasicInfo}
+              onComplete={handleSurveyComplete}
+            />
+          )}
         </motion.div>
       </div>
     </section>
