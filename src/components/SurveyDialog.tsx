@@ -111,7 +111,7 @@ const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialo
         phone: basicInfo?.contact || '',
         email: basicInfo?.email || '',
         q1_foreign_customer_ratio: answers.q1,
-        q2_difficulties: answers.q2,
+        q2_difficulties: answers.q2.join(', '),
         q3_inflow_channel: answers.q3,
         q4_most_needed: answers.q4,
         q5_partnership_intent: answers.q5,
