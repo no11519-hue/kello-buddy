@@ -104,7 +104,7 @@ const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialo
   const submitSurvey = async () => {
     setIsSubmitting(true);
     try {
-      const payload = {
+      const form = {
         company_name: basicInfo?.businessName || '',
         region: basicInfo?.region || '',
         business_type: basicInfo?.category || '',
@@ -115,19 +115,45 @@ const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialo
         q3_inflow_channel: answers.q3,
         q4_most_needed: answers.q4,
         q5_partnership_intent: answers.q5,
-        q6_case_note: answers.q6,
-        source: 'landing_page',
-        raw_payload: { basicInfo, answers }
+        q6_case_note: answers.q6 || null,
       };
 
-      const { error } = await supabase.from('partner_applications').insert([payload]);
-      
-      if (error) throw error;
+      const payload = {
+        company_name: form.company_name,
+        region: form.region,
+        business_type: form.business_type,
+        phone: form.phone,
+        email: form.email,
+        q1_foreign_customer_ratio: form.q1_foreign_customer_ratio,
+        q2_difficulties: form.q2_difficulties,
+        q3_inflow_channel: form.q3_inflow_channel,
+        q4_most_needed: form.q4_most_needed,
+        q5_partnership_intent: form.q5_partnership_intent,
+        q6_case_note: form.q6_case_note || null,
+        source: 'landing_page',
+        raw_payload: form
+      };
+
+      console.log('partner payload:', payload);
+
+      const { data, error } = await supabase
+        .from('partner_applications')
+        .insert([payload])
+        .select();
+
+      console.log('insert data:', data);
+      console.log('insert error:', error);
+
+      if (error) {
+        alert(`저장 실패: ${error.message}`);
+        throw error;
+      }
       
       toast.success("설문이 완료되었습니다. 감사합니다!");
       setSubmitted(true);
     } catch (err: any) {
       console.error("Survey submission failed: ", err);
+      // Fallback toast error in case it's not handled by the alert
       toast.error("알 수 없는 이유로 제출이 실패했습니다. 나중에 다시 시도해주세요.");
     } finally {
       setIsSubmitting(false);
