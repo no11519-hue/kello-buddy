@@ -42,7 +42,7 @@ const ExitIntentPopup = () => {
 
   const handleRegister = () => {
     setOpen(false);
-    const ctaSection = document.getElementById("cta-form");
+    const ctaSection = document.getElementById("cta");
     if (ctaSection) {
       ctaSection.scrollIntoView({ behavior: "smooth" });
     }

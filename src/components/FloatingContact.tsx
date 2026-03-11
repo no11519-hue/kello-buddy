@@ -24,17 +24,9 @@ const FloatingContact = () => {
                 <Mail className="h-4 w-4 shrink-0" />
                 hot6pent@gmail.com
               </a>
-              <a
-                href="tel:010-0000-0000"
-                className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Phone className="h-4 w-4 shrink-0" />
-                010-0000-0000
-              </a>
             </div>
-            <p className="text-xs text-muted-foreground mt-4 leading-relaxed bg-primary/5 p-3 rounded-xl">
-              <span className="font-semibold text-primary block mb-1">친절히 답변해 드리겠습니다! 😊</span>
-              평일 10:00 – 18:00 운영
+            <p className="text-xs text-muted-foreground mt-4 leading-relaxed bg-primary/5 p-3 rounded-xl text-center">
+              <span className="font-semibold text-primary block">친절히 답변해 드리겠습니다! 😊</span>
             </p>
           </motion.div>
         )}

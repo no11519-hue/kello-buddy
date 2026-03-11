@@ -27,10 +27,10 @@ const HeroSection = () => {
       {/* Content Area Below the Video */}
       <div className="container relative z-10 mx-auto px-6 pb-24 pt-12 md:pb-32 flex flex-col items-center text-center">
         <motion.div
-           initial={{ opacity: 0, y: 30 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
-           className="max-w-3xl mx-auto flex flex-col items-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl mx-auto flex flex-col items-center"
         >
           {/* Badge */}
           <motion.div
@@ -68,13 +68,13 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0, rotate: 2 }}
             transition={{ delay: 1.2, type: "spring", stiffness: 100 }}
             className="mt-16 w-full max-w-sm bg-[#fef08a] p-6 md:p-8 shadow-[5px_5px_15px_rgba(0,0,0,0.1)] relative border border-[#fde047] origin-top text-left"
-            style={{ 
+            style={{
               borderRadius: "2px 2px 20px 5px", // Slight curl effect
             }}
           >
             {/* Post-it Tape */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-8 bg-white/40 backdrop-blur-sm shadow-sm rotate-[-3deg]" />
-            
+
             <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-4 text-center sm:text-left">
               <TicketPercent className="h-6 w-6 sm:h-8 sm:w-8 text-amber-600 hidden sm:block" />
               <h3 className="text-xl sm:text-2xl font-black text-amber-900 break-keep leading-tight drop-shadow-sm">
@@ -82,7 +82,7 @@ const HeroSection = () => {
                 <span className="text-red-500 border-b-2 border-red-500 font-extrabold mt-1 inline-block text-2xl sm:text-3xl">무료로 제공합니다.</span>
               </h3>
             </div>
-            
+
             <p className="text-amber-900/90 font-bold leading-relaxed break-keep mb-6 text-base md:text-lg border-t border-amber-900/20 pt-4">
               플랫폼 초기 확장을 위해<br />
               2026년 동안은 제휴 매장이<br />
