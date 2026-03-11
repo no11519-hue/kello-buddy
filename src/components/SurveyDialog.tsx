@@ -4,17 +4,66 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import KelloText from "./KelloText";
+import { supabase } from "@/lib/supabase";
 
-interface SurveyDialogProps {
+export interface SurveyDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  basicInfo?: {
+    businessName: string;
+    region: string;
+    category: string;
+    contact: string;
+    email: string;
+  };
+  onComplete?: () => void;
 }
 
-const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
+const q1Options = [
+  { label: "거의 없음 (월 1~2명 이하)", value: "almost_none" },
+  { label: "가끔 있음 (월 3~10명)", value: "sometimes" },
+  { label: "꾸준히 있음 (월 10~30명)", value: "steady" },
+  { label: "매우 많음 (월 30명 이상)", value: "very_many" },
+];
+
+const q2Options = [
+  { label: "언어 소통 문제", value: "language" },
+  { label: "예약 관리의 번거로움", value: "reservation_management" },
+  { label: "가격 설명의 어려움", value: "price_explanation" },
+  { label: "노쇼(예약 취소) 문제", value: "no_show_cancel" },
+  { label: "결제 방식 문제", value: "payment_method" },
+  { label: "특별히 없음", value: "none" },
+];
+
+const q3Options = [
+  { label: "워크인(지나가다 방문)", value: "walk_in" },
+  { label: "SNS 검색", value: "sns" },
+  { label: "기존 고객 추천", value: "referral" },
+  { label: "여행 플랫폼(OTA 등)", value: "ota" },
+  { label: "거의 유입되지 않음", value: "almost_none" },
+];
+
+const q4Options = [
+  { label: "다국어 예약 시스템", value: "multilingual_reservation" },
+  { label: "정찰제 가격 안내", value: "fair_pricing" },
+  { label: "해외 결제 시스템", value: "overseas_payment" },
+  { label: "마케팅·홍보 지원", value: "marketing_support" },
+  { label: "외국인 고객 관리 지원", value: "foreign_customer_management" },
+];
+
+const q5Options = [
+  { label: "매우 적극적", value: "very_positive" },
+  { label: "조건에 따라 가능", value: "conditional" },
+  { label: "아직 고민 중", value: "considering" },
+  { label: "관심 없음", value: "not_interested" },
+];
+
+const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialogProps) => {
   const [step, setStep] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [answers, setAnswers] = useState({
     q1: "",
     q2: [] as string[],
@@ -28,11 +77,17 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
   const handleQ2Toggle = (value: string) => {
     setAnswers((prev) => {
       const current = prev.q2;
-      if (current.includes(value)) {
-        return { ...prev, q2: current.filter((v) => v !== value) };
+      if (value === "none") {
+        return { ...prev, q2: current.includes("none") ? [] : ["none"] };
       }
-      if (current.length >= 2) return prev;
-      return { ...prev, q2: [...current, value] };
+      
+      let next = current.filter((v) => v !== "none");
+      if (next.includes(value)) {
+        next = next.filter((v) => v !== value);
+      } else if (next.length < 2) {
+        next = [...next, value];
+      }
+      return { ...prev, q2: next };
     });
   };
 
@@ -46,12 +101,44 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
     return false;
   };
 
+  const submitSurvey = async () => {
+    setIsSubmitting(true);
+    try {
+      const payload = {
+        company_name: basicInfo?.businessName || '',
+        region: basicInfo?.region || '',
+        business_type: basicInfo?.category || '',
+        phone: basicInfo?.contact || '',
+        email: basicInfo?.email || '',
+        q1_foreign_customer_ratio: answers.q1,
+        q2_difficulties: answers.q2,
+        q3_inflow_channel: answers.q3,
+        q4_most_needed: answers.q4,
+        q5_partnership_intent: answers.q5,
+        q6_case_note: answers.q6,
+        source: 'landing_page',
+        raw_payload: { basicInfo, answers }
+      };
+
+      const { error } = await supabase.from('partner_applications').insert([payload]);
+      
+      if (error) throw error;
+      
+      toast.success("설문이 완료되었습니다. 감사합니다!");
+      setSubmitted(true);
+    } catch (err: any) {
+      console.error("Survey submission failed: ", err);
+      toast.error("알 수 없는 이유로 제출이 실패했습니다. 나중에 다시 시도해주세요.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleNext = () => {
     if (step < 5) {
       setStep(step + 1);
     } else {
-      toast.success("설문이 완료되었습니다. 감사합니다!");
-      setSubmitted(true);
+      submitSurvey();
     }
   };
 
@@ -61,6 +148,7 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
       setStep(0);
       setSubmitted(false);
       setAnswers({ q1: "", q2: [], q3: "", q4: "", q5: "", q6: "" });
+      if (submitted && onComplete) onComplete();
     }, 300);
   };
 
@@ -109,15 +197,10 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
             <div className="space-y-3">
               <p className="font-semibold text-sm">1. 현재 외국인 고객 비중은 어느 정도입니까?</p>
               <RadioGroup value={answers.q1} onValueChange={(v) => setAnswers({ ...answers, q1: v })}>
-                {[
-                  "거의 없음 (월 1~2명 이하)",
-                  "가끔 있음 (월 3~10명)",
-                  "꾸준히 있음 (월 10~30명)",
-                  "매우 많음 (월 30명 이상)",
-                ].map((opt) => (
-                  <div key={opt} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
-                    <RadioGroupItem value={opt} id={`q1-${opt}`} />
-                    <Label htmlFor={`q1-${opt}`} className="cursor-pointer flex-1 text-sm">{opt}</Label>
+                {q1Options.map((opt) => (
+                  <div key={opt.value} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
+                    <RadioGroupItem value={opt.value} id={`q1-${opt.value}`} />
+                    <Label htmlFor={`q1-${opt.value}`} className="cursor-pointer flex-1 text-sm">{opt.label}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -127,21 +210,14 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
           {step === 1 && (
             <div className="space-y-3">
               <p className="font-semibold text-sm">2. 외국인 고객 응대 시 가장 어려운 점은? (최대 2개)</p>
-              {[
-                "언어 소통 문제",
-                "예약 관리의 번거로움",
-                "가격 설명의 어려움",
-                "노쇼(예약 취소) 문제",
-                "결제 방식 문제",
-                "특별히 없음",
-              ].map((opt) => (
-                <div key={opt} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
+              {q2Options.map((opt) => (
+                <div key={opt.value} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
                   <Checkbox
-                    id={`q2-${opt}`}
-                    checked={answers.q2.includes(opt)}
-                    onCheckedChange={() => handleQ2Toggle(opt)}
+                    id={`q2-${opt.value}`}
+                    checked={answers.q2.includes(opt.value)}
+                    onCheckedChange={() => handleQ2Toggle(opt.value)}
                   />
-                  <Label htmlFor={`q2-${opt}`} className="cursor-pointer flex-1 text-sm">{opt}</Label>
+                  <Label htmlFor={`q2-${opt.value}`} className="cursor-pointer flex-1 text-sm">{opt.label}</Label>
                 </div>
               ))}
             </div>
@@ -151,16 +227,10 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
             <div className="space-y-3">
               <p className="font-semibold text-sm">3. 현재 외국인 고객은 주로 어떻게 유입됩니까?</p>
               <RadioGroup value={answers.q3} onValueChange={(v) => setAnswers({ ...answers, q3: v })}>
-                {[
-                  "워크인(지나가다 방문)",
-                  "SNS 검색",
-                  "기존 고객 추천",
-                  "여행 플랫폼(OTA 등)",
-                  "거의 유입되지 않음",
-                ].map((opt) => (
-                  <div key={opt} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
-                    <RadioGroupItem value={opt} id={`q3-${opt}`} />
-                    <Label htmlFor={`q3-${opt}`} className="cursor-pointer flex-1 text-sm">{opt}</Label>
+                {q3Options.map((opt) => (
+                  <div key={opt.value} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
+                    <RadioGroupItem value={opt.value} id={`q3-${opt.value}`} />
+                    <Label htmlFor={`q3-${opt.value}`} className="cursor-pointer flex-1 text-sm">{opt.label}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -171,16 +241,10 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
             <div className="space-y-3">
               <p className="font-semibold text-sm">4. 외국인 고객 확대를 위해 가장 필요한 것은?</p>
               <RadioGroup value={answers.q4} onValueChange={(v) => setAnswers({ ...answers, q4: v })}>
-                {[
-                  "다국어 예약 시스템",
-                  "정찰제 가격 안내",
-                  "해외 결제 시스템",
-                  "마케팅·홍보 지원",
-                  "외국인 고객 관리 지원",
-                ].map((opt) => (
-                  <div key={opt} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
-                    <RadioGroupItem value={opt} id={`q4-${opt}`} />
-                    <Label htmlFor={`q4-${opt}`} className="cursor-pointer flex-1 text-sm">{opt}</Label>
+                {q4Options.map((opt) => (
+                  <div key={opt.value} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
+                    <RadioGroupItem value={opt.value} id={`q4-${opt.value}`} />
+                    <Label htmlFor={`q4-${opt.value}`} className="cursor-pointer flex-1 text-sm">{opt.label}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -191,15 +255,10 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
             <div className="space-y-3">
               <p className="font-semibold text-sm">5. 플랫폼 제휴 의향은 어느 정도입니까?</p>
               <RadioGroup value={answers.q5} onValueChange={(v) => setAnswers({ ...answers, q5: v })}>
-                {[
-                  "매우 적극적",
-                  "조건에 따라 가능",
-                  "아직 고민 중",
-                  "관심 없음",
-                ].map((opt) => (
-                  <div key={opt} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
-                    <RadioGroupItem value={opt} id={`q5-${opt}`} />
-                    <Label htmlFor={`q5-${opt}`} className="cursor-pointer flex-1 text-sm">{opt}</Label>
+                {q5Options.map((opt) => (
+                  <div key={opt.value} className="flex items-center space-x-3 p-3 rounded-xl border border-border hover:bg-muted/50 transition-colors">
+                    <RadioGroupItem value={opt.value} id={`q5-${opt.value}`} />
+                    <Label htmlFor={`q5-${opt.value}`} className="cursor-pointer flex-1 text-sm">{opt.label}</Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -213,7 +272,7 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
                 placeholder="자유롭게 작성해주세요 (선택사항)"
                 value={answers.q6}
                 onChange={(e) => setAnswers({ ...answers, q6: e.target.value })}
-                className="min-h-[120px] rounded-xl"
+                className="min-h-[120px] rounded-xl text-sm"
               />
             </div>
           )}
@@ -223,17 +282,20 @@ const SurveyDialog = ({ open, onOpenChange }: SurveyDialogProps) => {
           {step > 0 && (
             <button
               onClick={() => setStep(step - 1)}
-              className="flex-1 border border-border text-foreground font-semibold py-3 rounded-xl hover:bg-muted/50 transition-colors text-sm"
+              disabled={isSubmitting}
+              className="flex-1 border border-border text-foreground font-semibold py-3 rounded-xl hover:bg-muted/50 transition-colors text-sm disabled:opacity-40"
             >
               이전
             </button>
           )}
           <button
             onClick={handleNext}
-            disabled={!canNext()}
+            disabled={!canNext() || isSubmitting}
             className="flex-1 bg-primary text-primary-foreground font-semibold py-3 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
           >
-            {step < 5 ? "다음" : (
+            {isSubmitting ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : step < 5 ? "다음" : (
               <>
                 <Send className="h-4 w-4" />
                 제출하기

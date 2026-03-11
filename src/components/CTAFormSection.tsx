@@ -24,9 +24,13 @@ const CTAFormSection = () => {
       toast.error("모든 항목을 입력해주세요.");
       return;
     }
-    toast.success("신청이 완료되었습니다! 담당자가 빠르게 연락드리겠습니다.");
-    setForm({ businessName: "", region: "", category: "", contact: "", email: "" });
+    // Only open the survey dialog, keep data intact
     setSurveyOpen(true);
+  };
+
+  const handleSurveyComplete = () => {
+    setForm({ businessName: "", region: "", category: "", contact: "", email: "" });
+    setSurveyOpen(false);
   };
 
   return (
@@ -121,7 +125,12 @@ const CTAFormSection = () => {
               제휴 문의하기
             </button>
           </form>
-          <SurveyDialog open={surveyOpen} onOpenChange={setSurveyOpen} />
+          <SurveyDialog 
+            open={surveyOpen} 
+            onOpenChange={setSurveyOpen} 
+            basicInfo={form}
+            onComplete={handleSurveyComplete}
+          />
         </motion.div>
       </div>
     </section>
