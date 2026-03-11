@@ -111,7 +111,7 @@ const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialo
         phone: basicInfo?.contact || '',
         email: basicInfo?.email || '',
         q1_foreign_customer_ratio: answers.q1,
-        q2_difficulties: answers.q2,
+        q2_difficulties: answers.q2.join(', '),
         q3_inflow_channel: answers.q3,
         q4_most_needed: answers.q4,
         q5_partnership_intent: answers.q5,
@@ -154,7 +154,7 @@ const SurveyDialog = ({ open, onOpenChange, basicInfo, onComplete }: SurveyDialo
     } catch (err: any) {
       console.error("Survey submission failed: ", err);
       // Fallback toast error in case it's not handled by the alert
-      toast.error("알 수 없는 이유로 제출이 실패했습니다. 나중에 다시 시도해주세요.");
+      toast.error(`저장 실패: ${err.message || err.details || '알 수 없는 이유로 제출이 실패했습니다. 나중에 다시 시도해주세요.'}`);
     } finally {
       setIsSubmitting(false);
     }
