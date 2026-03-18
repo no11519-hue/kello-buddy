@@ -32,7 +32,7 @@ const RevenueGraphSection = () => {
         >
           <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Revenue Growth</span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 sm:mb-6 leading-tight break-keep">
-            외국인 고객 몇 명만 늘어도<br />매출이 이렇게 증가합니다
+            외국인 고객 몇 명만 늘어도<br className="hidden sm:block" />매출이 이렇게 증가합니다
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium mb-2">
             평균 객단가 8만원 기준

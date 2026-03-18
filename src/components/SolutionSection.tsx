@@ -43,7 +43,7 @@ const SolutionSection = () => {
         >
           <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Solution</span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 sm:mb-6 leading-tight break-keep">
-            <KelloText />가 외국인 고객과<br />사장님을 연결해드립니다
+            <KelloText />가 외국인 고객과<br className="hidden sm:block" />사장님을 연결해드립니다
           </h2>
         </motion.div>
 

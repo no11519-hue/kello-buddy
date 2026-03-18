@@ -95,12 +95,12 @@ const HeroSection = () => {
             </div>
 
             <p className="text-amber-900/90 font-bold leading-relaxed break-keep mb-6 text-base md:text-lg border-t border-amber-900/20 pt-4">
-              플랫폼 초기 확장을 위해<br />
-              2026년 동안은 제휴 매장이<br />
+              플랫폼 초기 확장을 위해<br className="hidden sm:block" />
+              2026년 동안은 제휴 매장이<br className="hidden sm:block" />
               <KelloText /> 서비스를 무료로 사용할 수 있습니다.
             </p>
             <p className="text-amber-900 font-black break-keep text-lg md:text-xl drop-shadow-sm">
-              외국인 고객을 먼저 만나보는 기회,<br />
+              외국인 고객을 먼저 만나보는 기회,<br className="hidden sm:block" />
               지금 참여하세요! ✨
             </p>
           </motion.div>

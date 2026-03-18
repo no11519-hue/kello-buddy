@@ -38,7 +38,7 @@ const ProblemSection = () => {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <div className="bg-primary/5 border-l-4 border-primary p-4 sm:p-6 rounded-r-xl mb-6 text-left max-w-fit mx-auto relative shadow-sm">
-            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight tracking-tight whitespace-nowrap">
+            <h2 className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-extrabold text-foreground leading-tight tracking-tight break-keep">
               "사장님들 외국인 고객손님 불편하셨죠?"
             </h2>
           </div>

@@ -6,14 +6,14 @@ const steps = [
   {
     icon: Search,
     num: "1",
-    title: <>외국인이 여행 준비 중<br/>K-뷰티 체험 검색</>,
+    title: <>외국인이 여행 준비 중<br className="hidden sm:block"/>K-뷰티 체험 검색</>,
     desc: "",
     color: "from-blue-400 to-blue-600",
   },
   {
     icon: MapPin,
     num: "2",
-    title: <><KelloText /> 플랫폼에서<br/>예약 가능한 매장 발견</>,
+    title: <><KelloText /> 플랫폼에서<br className="hidden sm:block"/>예약 가능한 매장 발견</>,
     desc: "",
     color: "from-kello-gold to-accent",
   },
@@ -40,7 +40,7 @@ const CustomerFlowSection = () => {
         >
           <span className="inline-block text-sm font-bold text-primary tracking-widest uppercase mb-4">How it works</span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 sm:mb-6 leading-tight break-keep">
-            외국인 고객은 이렇게<br />매장을 찾습니다
+            외국인 고객은 이렇게<br className="hidden sm:block" />매장을 찾습니다
           </h2>
         </motion.div>
 
@@ -64,7 +64,7 @@ const CustomerFlowSection = () => {
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} mb-6 shadow-md opacity-10 absolute top-10 pointer-events-none`}>
                 </div>
                 <step.icon className="h-10 w-10 text-primary mb-4 relative z-10" />
-                <h3 className="text-lg sm:text-xl font-black text-foreground mb-3 whitespace-pre-line leading-snug">{step.title}</h3>
+                <h3 className="text-lg sm:text-xl font-black text-foreground mb-3 leading-snug break-keep">{step.title}</h3>
                 {step.desc && (
                   <p className="text-muted-foreground font-medium leading-relaxed break-keep">
                     {step.desc}
