@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Globe, Phone, TicketPercent } from "lucide-react";
+import { Globe, Phone, TicketPercent, CheckCircle2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import KelloText from "./KelloText";
 
@@ -62,8 +62,19 @@ const HeroSection = () => {
             외국인 고객 받고 매출 올리기
           </motion.button>
 
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0 }}
+            className="mt-4 flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground/60 tracking-tight"
+          >
+            <CheckCircle2 className="w-3.5 h-3.5 text-primary/70" />
+            <span>신청 1분 <span className="mx-1 text-foreground/30">·</span> 확인 후 순차 연락 <span className="mx-1 text-foreground/30">·</span> DM 문의 가능</span>
+          </motion.div>
+
           {/* Post-it Note Promotion */}
           <motion.div
+            id="benefits"
             initial={{ opacity: 0, y: 50, rotate: -5 }}
             animate={{ opacity: 1, y: 0, rotate: 2 }}
             transition={{ delay: 1.2, type: "spring", stiffness: 100 }}

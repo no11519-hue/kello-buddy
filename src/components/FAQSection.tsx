@@ -32,7 +32,7 @@ const faqs = [
 
 const FAQSection = () => {
   return (
-    <section className="py-24 bg-spring-mint relative overflow-hidden">
+    <section id="faq" className="py-24 bg-spring-mint relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 10% 20%, hsl(var(--kello-coral) / 0.04) 0%, transparent 40%), radial-gradient(circle at 90% 80%, hsl(var(--primary) / 0.04) 0%, transparent 40%)" }} />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div

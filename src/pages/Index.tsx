@@ -4,8 +4,9 @@ import CustomerFlowSection from "@/components/CustomerFlowSection";
 import SolutionSection from "@/components/SolutionSection";
 import RevenueGraphSection from "@/components/RevenueGraphSection";
 
-
 import FAQSection from "@/components/FAQSection";
+import SocialProofSection from "@/components/SocialProofSection";
+import KelloServiceStepsSection from "@/components/KelloServiceStepsSection";
 import CTAFormSection from "@/components/CTAFormSection";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
@@ -19,14 +20,25 @@ const Index = () => {
       <CherryBlossoms />
       <Header />
       <HeroSection />
-      <RevenueGraphSection />
-      <CustomerFlowSection />
+      <div>
+        <RevenueGraphSection />
+        <CustomerFlowSection />
+      </div>
 
-      <ProblemSection />
-      <SolutionSection />
+      <div id="service">
+        <ProblemSection />
+        <SolutionSection />
+        <KelloServiceStepsSection />
+      </div>
 
-      <FAQSection />
-      <CTAFormSection />
+      <SocialProofSection />
+      <div id="faq">
+        <FAQSection />
+      </div>
+
+      <div id="apply">
+        <CTAFormSection />
+      </div>
       <Footer />
       <FloatingContact />
       <ExitIntentPopup />
