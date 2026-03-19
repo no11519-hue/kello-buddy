@@ -13,12 +13,14 @@ import FloatingContact from "@/components/FloatingContact";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import Header from "@/components/Header";
 import CherryBlossoms from "@/components/CherryBlossoms";
+import FloatingPromo from "@/components/FloatingPromo";
 
 const Index = () => {
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen font-sans overflow-x-hidden">
       <CherryBlossoms />
       <Header />
+      <FloatingPromo />
       <HeroSection />
       <div>
         <RevenueGraphSection />
