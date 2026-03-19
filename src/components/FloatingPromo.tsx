@@ -88,18 +88,9 @@ const FloatingPromo = () => {
                       <div className="flex-1">
                         <p className="text-[8px] font-black text-primary uppercase tracking-tighter mb-0.5 font-sans">Special Event</p>
                         <h4 className="text-xs sm:text-sm font-black text-foreground leading-tight">
-                          지금 신청하면<br />커피 쿠폰 증정! 🎁
+                          지금 신청하고 설문 완료하면<br />커피 쿠폰 증정! 🎁
                         </h4>
                       </div>
-                    </button>
-
-                    {/* Lower Section: Survey Button (Now integrated) */}
-                    <button
-                      onClick={handleSurveyOpen}
-                      className="bg-foreground text-background py-3 px-4 flex items-center justify-center gap-2 hover:bg-foreground/90 transition-all active:scale-95 border-t border-white/10"
-                    >
-                      <ClipboardList className="h-4 w-4 text-primary animate-pulse" />
-                      <span className="text-[11px] font-black tracking-tight">설문 참여하고 커피받기</span>
                     </button>
                   </div>
                 </motion.div>
