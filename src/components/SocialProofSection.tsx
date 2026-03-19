@@ -88,15 +88,15 @@ const SocialProofSection = () => {
         </ScrollReveal>
 
         {/* Trust Icons */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16 items-stretch">
           {trustItems.map((item, i) => (
             <ScrollReveal key={item.label} delay={i * 0.1} width="100%">
-              <div className="flex flex-col items-center p-6 bg-white rounded-3xl shadow-sm border border-border/40 text-center h-full">
+              <div className="flex flex-col items-center p-6 bg-white rounded-3xl shadow-sm border border-border/40 text-center h-full min-h-[160px]">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="font-bold text-foreground mb-1">{item.label}</h3>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <h3 className="font-bold text-foreground mb-1 whitespace-nowrap">{item.label}</h3>
+                <p className="text-sm text-muted-foreground whitespace-nowrap">{item.desc}</p>
               </div>
             </ScrollReveal>
           ))}
