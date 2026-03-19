@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import TermsOfService from "./TermsOfService";
+import ScrollReveal from "./ScrollReveal";
 
 // 데이터 배열: 추후 항목 추가/수정 및 실제 링크(#) 교체가 쉽도록 분리해 둠
 const FOOTER_MENUS = [
@@ -104,41 +105,43 @@ const FooterMenuSection = ({ menu }: { menu: typeof FOOTER_MENUS[0] }) => {
 const Footer = () => {
   return (
     <footer className="bg-spring-pink py-12 border-t border-border/50">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-8">
-          
-          {/* 푸터 왼쪽 영역: 회사 정보 */}
-          <div className="flex flex-col items-start text-left max-w-sm">
-            <div className="mb-4">
-              <span className="text-2xl font-black bg-clip-text text-transparent" style={{ backgroundImage: "var(--kello-gradient-hero)" }}>Kello</span>
-            </div>
+      <ScrollReveal width="100%">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-8">
             
-            <p className="text-foreground/60 text-sm mb-6">
-              외국인 관광객과 한국 사장님을 연결하는 AI 예약 대행 서비스
-            </p>
+            {/* 푸터 왼쪽 영역: 회사 정보 */}
+            <div className="flex flex-col items-start text-left max-w-sm">
+              <div className="mb-4">
+                <span className="text-2xl font-black bg-clip-text text-transparent" style={{ backgroundImage: "var(--kello-gradient-hero)" }}>Kello</span>
+              </div>
+              
+              <p className="text-foreground/60 text-sm mb-6">
+                외국인 관광객과 한국 사장님을 연결하는 AI 예약 대행 서비스
+              </p>
 
-            <div className="text-foreground/60 text-sm flex flex-col gap-2 mb-8">
-              <p>회사명 : (주)HSP</p>
-              <p>서비스명 : 켈로</p>
-              <p>대표 : 정다영</p>
-              <p>사업자등록번호 : 000-00-00000</p>
-              {/* <p>주소 : 서울특별시 강남구 ... (추후 추가 시 주석 해제)</p> */}
+              <div className="text-foreground/60 text-sm flex flex-col gap-2 mb-8">
+                <p>회사명 : (주)HSP</p>
+                <p>서비스명 : 켈로</p>
+                <p>대표 : 정다영</p>
+                <p>사업자등록번호 : 000-00-00000</p>
+                {/* <p>주소 : 서울특별시 강남구 ... (추후 추가 시 주석 해제)</p> */}
+              </div>
+
+              <div className="text-foreground/40 text-xs mt-auto">
+                © 2026 Kello. All rights reserved.
+              </div>
             </div>
 
-            <div className="text-foreground/40 text-xs mt-auto">
-              © 2026 Kello. All rights reserved.
+            {/* 푸터 오른쪽 영역: 서비스 및 고객지원 메뉴 배열 반복 렌더링 */}
+            <div className="flex flex-col lg:flex-row gap-2 lg:gap-12">
+              {FOOTER_MENUS.map((menu, idx) => (
+                <FooterMenuSection key={idx} menu={menu} />
+              ))}
             </div>
-          </div>
 
-          {/* 푸터 오른쪽 영역: 서비스 및 고객지원 메뉴 배열 반복 렌더링 */}
-          <div className="flex flex-col lg:flex-row gap-2 lg:gap-12">
-            {FOOTER_MENUS.map((menu, idx) => (
-              <FooterMenuSection key={idx} menu={menu} />
-            ))}
           </div>
-
         </div>
-      </div>
+      </ScrollReveal>
     </footer>
   );
 };

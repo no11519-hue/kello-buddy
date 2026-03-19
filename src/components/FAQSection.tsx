@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -6,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import KelloText from "./KelloText";
+import ScrollReveal from "./ScrollReveal";
 
 const faqs = [
   {
@@ -35,41 +35,35 @@ const FAQSection = () => {
     <section id="faq" className="py-24 bg-spring-mint relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 10% 20%, hsl(var(--kello-coral) / 0.04) 0%, transparent 40%), radial-gradient(circle at 90% 80%, hsl(var(--primary) / 0.04) 0%, transparent 40%)" }} />
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">FAQ</span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground break-keep">
-            자주 묻는 질문
-          </h2>
-        </motion.div>
+        <ScrollReveal width="100%">
+          <div className="text-center mb-16">
+            <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">FAQ</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground break-keep">
+              자주 묻는 질문
+            </h2>
+          </div>
+        </ScrollReveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`faq-${i}`}
-                className="bg-card rounded-xl border border-border px-6 shadow-sm"
-              >
-                <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+        <ScrollReveal width="100%" delay={0.2}>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-3">
+              {faqs.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`faq-${i}`}
+                  className="bg-card rounded-xl border border-border px-6 shadow-sm"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

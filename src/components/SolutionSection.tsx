@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Languages, Smartphone, Globe2, TrendingUp } from "lucide-react";
 import KelloText from "./KelloText";
+import ScrollReveal from "./ScrollReveal";
 
 const solutions = [
   {
@@ -35,37 +36,29 @@ const SolutionSection = () => {
       <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.1) 0%, transparent 50%)" }} />
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-kello-gold/10 rounded-full blur-3xl -translate-y-1/2" />
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 max-w-3xl mx-auto"
-        >
-          <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Solution</span>
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 break-keep">
-            <KelloText />가 외국인 고객과<br className="hidden sm:block" />사장님을 연결해드립니다.
-          </h2>
-          <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary/80 leading-tight tracking-tight break-keep pt-2">
-            "노쇼 없는 100% 선결제로<br className="sm:hidden" /> 확실한 방문과 매출 보장"
-          </p>
-        </motion.div>
+        <ScrollReveal width="100%">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Solution</span>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 break-keep">
+              <KelloText />가 외국인 고객과<br className="hidden sm:block" />사장님을 연결해드립니다.
+            </h2>
+            <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary/80 leading-tight tracking-tight break-keep pt-2">
+              "노쇼 없는 100% 선결제로<br className="sm:hidden" /> 확실한 방문과 매출 보장"
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {solutions.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-3xl p-6 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center group"
-            >
-              <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${s.gradient} mb-5 shadow-sm group-hover:scale-110 transition-transform`}>
-                <s.icon className="h-6 w-6 text-primary-foreground" />
+            <ScrollReveal key={s.title} delay={i * 0.15}>
+              <div className="glass-card rounded-3xl p-6 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center group">
+                <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${s.gradient} mb-5 shadow-sm group-hover:scale-110 transition-transform`}>
+                  <s.icon className="h-6 w-6 text-primary-foreground" />
+                </div>
+                <h3 className="text-lg sm:text-xl font-black text-foreground mb-3 break-keep">{s.title}</h3>
+                <p className="text-sm sm:text-base text-foreground/80 font-bold leading-relaxed break-keep">{s.desc}</p>
               </div>
-              <h3 className="text-lg sm:text-xl font-black text-foreground mb-3 break-keep">{s.title}</h3>
-              <p className="text-sm sm:text-base text-foreground/80 font-bold leading-relaxed break-keep">{s.desc}</p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

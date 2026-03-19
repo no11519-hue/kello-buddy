@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Globe, Phone, TicketPercent, CheckCircle2 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import KelloText from "./KelloText";
+import ScrollReveal from "./ScrollReveal";
 
 const HeroSection = () => {
   return (
@@ -33,44 +34,43 @@ const HeroSection = () => {
           className="max-w-3xl mx-auto flex flex-col items-center"
         >
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 mb-8 shadow-sm"
-          >
-            <Globe className="h-4 w-4 text-primary" />
-            <span className="text-sm font-bold text-primary">사장님 전용 파트너 제휴</span>
-          </motion.div>
+          <ScrollReveal delay={0.2}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 mb-8 shadow-sm">
+              <Globe className="h-4 w-4 text-primary" />
+              <span className="text-sm font-bold text-primary">사장님 전용 파트너 제휴</span>
+            </div>
+          </ScrollReveal>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-foreground mb-6 break-keep drop-shadow-md">
-            외국인 손님이 매출이 됩니다
-          </h1>
-          <p className="text-sm sm:text-base md:text-2xl text-foreground/80 leading-relaxed mb-10 font-bold max-w-4xl mx-auto break-keep">
-            <KelloText />는 외국인 관광객이 <br className="hidden md:block" />
-            한국 매장을 쉽게 예약하도록 연결합니다
-          </p>
+          <ScrollReveal delay={0.4}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-foreground mb-6 break-keep drop-shadow-md">
+              외국인 손님이 매출이 됩니다
+            </h1>
+          </ScrollReveal>
 
-          <motion.button
-            onClick={() => window.dispatchEvent(new Event('open-promo-popup'))}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground font-bold px-6 py-4 md:px-8 md:py-5 rounded-full text-base md:text-xl shadow-kello-glow hover:scale-105 transition-transform relative z-10"
-          >
-            <Phone className="h-5 w-5 md:h-6 md:w-6" />
-            외국인 고객 받고 매출 올리기
-          </motion.button>
+          <ScrollReveal delay={0.6}>
+            <p className="text-sm sm:text-base md:text-2xl text-foreground/80 leading-relaxed mb-10 font-bold max-w-4xl mx-auto break-keep">
+              <KelloText />는 외국인 관광객이 <br className="hidden md:block" />
+              한국 매장을 쉽게 예약하도록 연결합니다
+            </p>
+          </ScrollReveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0 }}
-            className="mt-4 flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground/60 tracking-tight"
-          >
-            <CheckCircle2 className="w-3.5 h-3.5 text-primary/70" />
-            <span>신청 1분 <span className="mx-1 text-foreground/30">·</span> 확인 후 순차 연락 <span className="mx-1 text-foreground/30">·</span> DM 문의 가능</span>
-          </motion.div>
+          <ScrollReveal delay={0.8}>
+            <button
+              onClick={() => window.dispatchEvent(new Event('open-promo-popup'))}
+              className="inline-flex items-center gap-2 bg-gradient-accent text-accent-foreground font-bold px-6 py-4 md:px-8 md:py-5 rounded-full text-base md:text-xl shadow-kello-glow hover:scale-105 transition-transform relative z-10"
+            >
+              <Phone className="h-5 w-5 md:h-6 md:w-6" />
+              외국인 고객 받고 매출 올리기
+            </button>
+          </ScrollReveal>
+
+          <ScrollReveal delay={1.0}>
+            <div className="mt-4 flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-foreground/60 tracking-tight"
+            >
+              <CheckCircle2 className="w-3.5 h-3.5 text-primary/70" />
+              <span>신청 1분 <span className="mx-1 text-foreground/30">·</span> 확인 후 순차 연락 <span className="mx-1 text-foreground/30">·</span> DM 문의 가능</span>
+            </div>
+          </ScrollReveal>
 
           {/* Post-it Note Promotion */}
           <motion.div

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { BadgeCheck, Star, ShieldCheck, MessageSquareQuote } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const trustItems = [
   { icon: BadgeCheck, label: "가격 신뢰", desc: "정찰제 기반의 투명한 가격 안내" },
@@ -77,35 +78,27 @@ const SocialProofSection = () => {
       <div className="absolute top-20 right-0 w-96 h-96 bg-kello-gold/5 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Trust</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
-            사장님이 신뢰할 수 있는 이유
-          </h2>
-        </motion.div>
+        <ScrollReveal width="100%">
+          <div className="text-center mb-16">
+            <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Trust</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
+              사장님이 신뢰할 수 있는 이유
+            </h2>
+          </div>
+        </ScrollReveal>
 
         {/* Trust Icons */}
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
           {trustItems.map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="flex flex-col items-center p-6 bg-white rounded-3xl shadow-sm border border-border/40 text-center"
-            >
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                <item.icon className="h-6 w-6 text-primary" />
+            <ScrollReveal key={item.label} delay={i * 0.1} width="100%">
+              <div className="flex flex-col items-center p-6 bg-white rounded-3xl shadow-sm border border-border/40 text-center h-full">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                  <item.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="font-bold text-foreground mb-1">{item.label}</h3>
+                <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
-              <h3 className="font-bold text-foreground mb-1">{item.label}</h3>
-              <p className="text-sm text-muted-foreground">{item.desc}</p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
