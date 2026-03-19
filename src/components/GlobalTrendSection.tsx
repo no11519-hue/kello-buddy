@@ -9,27 +9,27 @@ const GlobalTrendSection = () => {
         <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 mb-12">
+      <div className="container mx-auto px-4 relative z-10 mb-8 sm:mb-12">
         <ScrollReveal width="100%">
           <div className="text-center">
-            <h2 className="text-3xl md:text-5xl font-[900] text-[#2d0a28] mb-4 tracking-tight break-keep">
-              글로벌 관광객 유입과 <span className="text-[#a8448d]">K-뷰티 소비 트렌드</span>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-[900] text-[#2d0a28] mb-3 sm:mb-4 tracking-tight break-keep leading-tight">
+              글로벌 관광객 유입과 <br className="xs:block sm:hidden" /><span className="text-[#a8448d]">K-뷰티 소비 트렌드</span>
             </h2>
-            <p className="text-lg md:text-xl text-[#6b4c65] font-bold opacity-90 break-keep">
+            <p className="text-sm sm:text-lg md:text-xl text-[#6b4c65] font-bold opacity-90 break-keep px-2">
               외국인 관광객의 미용 서비스 이용 현황 및 지출 분석
             </p>
           </div>
         </ScrollReveal>
       </div>
 
-      {/* Full width image container with top crop to remove redundant title and subtitle */}
+      {/* Full width image container with precise responsive crop */}
       <div className="w-full relative z-10 overflow-hidden">
         <ScrollReveal width="100%">
-          <div className="relative w-full overflow-hidden bg-[#f9ebf3] mt-[-15%] sm:mt-[-12%] md:mt-[-165px]">
+          <div className="relative w-full overflow-hidden bg-[#f9ebf3] -mt-[18vw] sm:-mt-[15vw] md:-mt-[180px]">
             <img 
               src="/그래프11.png" 
               alt="글로벌 관광객 유입과 K-뷰티 소비 트렌드 그래프" 
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover object-bottom"
               style={{ 
                 imageRendering: 'auto', 
                 WebkitBackfaceVisibility: 'hidden',
