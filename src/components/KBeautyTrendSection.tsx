@@ -7,13 +7,6 @@ const stats = [
     mainVal: "2024년 1,700만 명",
     subContent: (
       <div className="mt-4 relative h-24 w-full flex items-end">
-        {/* Simplified Map background */}
-        <div className="absolute inset-0 opacity-10 flex items-center justify-center grayscale">
-          <svg viewBox="0 0 200 100" className="w-full h-full">
-            <path d="M20,40 Q40,30 60,40 T100,40 T140,30 T180,50" fill="none" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        </div>
-        {/* Simplified Line Graph */}
         <svg viewBox="0 0 100 50" className="w-full h-full overflow-visible">
           <path d="M0,45 L30,40 L60,30 L100,5" fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" />
           <circle cx="0" cy="45" r="2" fill="hsl(var(--primary))" />
@@ -28,7 +21,7 @@ const stats = [
           </g>
         </svg>
       </div>
-    )
+    ),
   },
   {
     title: "미용·뷰티 이용자 수 및 비중",
@@ -57,7 +50,7 @@ const stats = [
           </div>
         </div>
       </div>
-    )
+    ),
   },
   {
     title: "1인당 미용 목적 평균 지출",
@@ -75,18 +68,17 @@ const stats = [
           <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent">👛</div>
           <div className="text-left">
             <p className="text-[9px] font-bold text-muted-foreground">한국 내 전체 카드 사용액 평균</p>
-            <p className="text-sm font-black text-accent text-rose-500">399만 원</p>
+            <p className="text-sm font-black text-rose-500">399만 원</p>
           </div>
         </div>
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 const KBeautyTrendSection = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-[#FFF5F7] to-[#FFE3EC] relative overflow-hidden">
-      {/* Decorative Cherry Blossoms (Absolute) */}
       <div className="absolute top-10 left-10 opacity-20 pointer-events-none">🌸</div>
       <div className="absolute bottom-20 right-10 opacity-20 pointer-events-none text-2xl">🌸</div>
       <div className="absolute top-1/2 right-1/4 opacity-10 pointer-events-none text-xl">✨</div>
@@ -119,7 +111,7 @@ const KBeautyTrendSection = () => {
           ))}
         </div>
 
-        {/* Charts Container — Large, image-faithful */}
+        {/* Charts Container */}
         <ScrollReveal width="100%" delay={0.2}>
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-10">
@@ -131,20 +123,19 @@ const KBeautyTrendSection = () => {
 
               {/* ── LEFT: Bar Chart ── */}
               <div className="bg-white/50 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-white/70 shadow-xl">
-                {/* No title above per user request */}
                 <div className="relative h-80 sm:h-96 mt-10">
                   {/* Y-axis labels */}
                   {["300만", "200만", "150만", "100만", "50만", "0"].map((v, i) => (
-                    <div key={v} className="absolute left-0 text-xs font-bold text-rose-300" style={{ bottom: `${(i === 0 ? 100 : i === 1 ? 66 : i === 2 ? 50 : i === 3 ? 33 : i === 4 ? 16 : 0)}%`, transform: 'translateY(50%)' }}>
+                    <div key={v} className="absolute left-0 text-xs font-bold text-rose-300"
+                      style={{ bottom: `${[100, 66, 50, 33, 16, 0][i]}%`, transform: "translateY(50%)" }}>
                       {v}
                     </div>
                   ))}
-
                   {/* Grid lines */}
                   {[0, 16, 33, 50, 66, 100].map(p => (
-                    <div key={p} className="absolute w-full border-t border-dashed border-rose-100" style={{ bottom: `${p}%`, left: '2rem' }} />
+                    <div key={p} className="absolute w-full border-t border-dashed border-rose-100"
+                      style={{ bottom: `${p}%`, left: "2rem" }} />
                   ))}
-
                   {/* Bars */}
                   <div className="absolute inset-0 flex items-end justify-around pl-10 pb-8 gap-3">
                     {[
@@ -154,18 +145,17 @@ const KBeautyTrendSection = () => {
                       { yr: "2024", pct: 90, valTag: { text: "250만 명", highlight: true } },
                     ].map((bar, i) => (
                       <div key={i} className="flex-1 flex flex-col items-center h-full justify-end relative">
-                        {/* Values above bars (sticker style) */}
                         {bar.valTag && (
                           <motion.div
                             initial={{ opacity: 0, y: 12 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.8 + i * 0.1 }}
-                            className={`absolute bottom-[calc(100%*var(--p)/100+2rem)] whitespace-nowrap text-sm font-black px-3 py-1 rounded-xl shadow-md z-10 ${bar.valTag.highlight ? 'bg-rose-600 text-white text-base' : 'bg-rose-100 text-rose-600'}`}
-                            style={{ '--p': bar.pct } as React.CSSProperties}
+                            className={`absolute whitespace-nowrap text-sm font-black px-3 py-1 rounded-xl shadow-md z-10 ${bar.valTag.highlight ? "bg-rose-600 text-white text-base" : "bg-rose-100 text-rose-600"}`}
+                            style={{ bottom: `calc(${bar.pct}% + 2rem)` }}
                           >
                             {bar.valTag.text}
-                            <div className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 ${bar.valTag.highlight ? 'bg-rose-600' : 'bg-rose-100'}`} />
+                            <div className={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 ${bar.valTag.highlight ? "bg-rose-600" : "bg-rose-100"}`} />
                           </motion.div>
                         )}
                         <motion.div
@@ -173,7 +163,7 @@ const KBeautyTrendSection = () => {
                           whileInView={{ height: `${bar.pct}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1.2, delay: 0.2 + i * 0.15, ease: "easeOut" }}
-                          className={`w-full max-w-[60px] rounded-t-2xl shadow-lg ${i === 3 ? 'bg-gradient-to-t from-rose-700 via-rose-500 to-rose-400' : 'bg-gradient-to-t from-rose-300 to-rose-200'}`}
+                          className={`w-full max-w-[60px] rounded-t-2xl shadow-lg ${i === 3 ? "bg-gradient-to-t from-rose-700 via-rose-500 to-rose-400" : "bg-gradient-to-t from-rose-300 to-rose-200"}`}
                         />
                         <span className="absolute -bottom-6 text-sm font-bold text-muted-foreground">{bar.yr}</span>
                       </div>
@@ -187,42 +177,45 @@ const KBeautyTrendSection = () => {
                 <div className="flex justify-end mb-2">
                   <span className="text-xs font-bold text-muted-foreground">미용 시술 총 매출액 (억 원)</span>
                 </div>
+                {/* Chart area */}
                 <div className="relative h-80 sm:h-96">
                   {/* Y-axis labels LEFT */}
                   {["7000", "6000", "5000", "4000", "3000", "2000", "1000", "0"].map((v, i) => (
-                    <div key={v} className="absolute left-0 text-[10px] font-bold text-rose-300" style={{ bottom: `${100 - i * 100 / 7}%`, transform: 'translateY(50%)' }}>
-                      {v}
-                    </div>
-                  ))}
-                  {/* Y-axis labels RIGHT */}
-                  {["7,000억", "6,000억", "5,000억", "4,000억", "3,000억", "2,000억", "1,000억", "0"].map((v, i) => (
-                    <div key={v} className="absolute right-0 text-[9px] font-bold text-rose-200" style={{ bottom: `${100 - i * 100 / 7}%`, transform: 'translateY(50%)' }}>
+                    <div key={v} className="absolute left-0 text-[10px] font-bold text-rose-300"
+                      style={{ bottom: `${100 - i * 100 / 7}%`, transform: "translateY(50%)" }}>
                       {v}
                     </div>
                   ))}
 
-                  {/* SVG Chart */}
-                  <div className="absolute inset-0 px-8">
-                    <svg viewBox="0 0 300 200" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+                  {/* SVG — viewBox has negative top space for labels */}
+                  <div className="absolute inset-0 px-10 pb-8">
+                    <svg
+                      viewBox="0 -50 300 250"
+                      className="w-full h-full overflow-visible"
+                      preserveAspectRatio="none"
+                    >
                       <defs>
-                        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                        <linearGradient id="areaGrad2" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="0%" stopColor="#f43f5e" stopOpacity="0.35" />
                           <stop offset="100%" stopColor="#fff" stopOpacity="0" />
                         </linearGradient>
                       </defs>
-                      {/* Grid */}
+
+                      {/* Grid lines */}
                       {[0, 28, 57, 86, 114, 143, 172, 200].map(y => (
                         <line key={y} x1="0" y1={y} x2="300" y2={y} stroke="#FFE4E9" strokeWidth="0.5" strokeDasharray="4,4" />
                       ))}
-                      {/* Area Fill */}
+
+                      {/* Area fill */}
                       <motion.path
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 2 }}
                         d="M 20 185 C 60 175, 80 160, 100 130 C 130 95, 170 65, 220 50 L 280 30 L 280 200 L 20 200 Z"
-                        fill="url(#areaGrad)"
+                        fill="url(#areaGrad2)"
                       />
+
                       {/* Line */}
                       <motion.path
                         initial={{ pathLength: 0 }}
@@ -236,72 +229,89 @@ const KBeautyTrendSection = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
-                      {/* Data Points */}
+
+                      {/* Data point circles */}
                       {[
-                        { x: 20, y: 185, label: null },
-                        { x: 100, y: 130, label: null },
-                        { x: 220, y: 50, label: "6,000억 원" },
-                        { x: 280, y: 30, label: "7,000억 원", highlight: true },
+                        { x: 20,  y: 185 },
+                        { x: 100, y: 130 },
+                        { x: 220, y: 50  },
+                        { x: 280, y: 30  },
                       ].map((p, i) => (
                         <motion.circle
                           key={i}
-                          cx={p.x} cy={p.y} r="5"
-                          fill="white" stroke="#9F1239" strokeWidth="2"
-                          initial={{ scale: 0 }} whileInView={{ scale: 1 }}
+                          cx={p.x} cy={p.y} r="6"
+                          fill="white" stroke="#9F1239" strokeWidth="2.5"
+                          initial={{ scale: 0 }}
+                          whileInView={{ scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: 1 + i * 0.2 }}
                         />
                       ))}
+
+                      {/* ── 6,000억 label — centered on x=220, y=50 ── */}
+                      {/* dashed connector line from label bottom to circle top */}
+                      <line x1="220" y1="14" x2="220" y2="43" stroke="#fda4af" strokeWidth="1.5" strokeDasharray="3,2" />
+                      <foreignObject x="150" y="-40" width="140" height="30">
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                          <div style={{
+                            background: "#ffe4e6",
+                            color: "#e11d48",
+                            fontSize: "12px",
+                            fontWeight: 900,
+                            padding: "3px 10px",
+                            borderRadius: "10px",
+                            whiteSpace: "nowrap",
+                            boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
+                          }}>
+                            6,000억 원
+                          </div>
+                        </div>
+                      </foreignObject>
+
+                      {/* ── 7,000억 label — centered on x=280, y=30 ── */}
+                      <line x1="280" y1="-4" x2="280" y2="23" stroke="#9f1239" strokeWidth="1.5" strokeDasharray="3,2" />
+                      <foreignObject x="210" y="-44" width="140" height="30">
+                        <div style={{ display: "flex", justifyContent: "center" }}>
+                          <div style={{
+                            background: "#9f1239",
+                            color: "#fff",
+                            fontSize: "12px",
+                            fontWeight: 900,
+                            padding: "3px 10px",
+                            borderRadius: "10px",
+                            whiteSpace: "nowrap",
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+                          }}>
+                            7,000억 원
+                          </div>
+                        </div>
+                      </foreignObject>
+
+                      {/* Kello와 추가 수익 annotation — centered between 2023-2024 */}
+                      <foreignObject x="120" y="80" width="120" height="60">
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                          <div style={{
+                            color: "#9f1239",
+                            fontSize: "13px",
+                            fontWeight: 900,
+                            textAlign: "center",
+                            lineHeight: 1.3,
+                          }}>
+                            Kello와<br />추가 수익
+                          </div>
+                          <div style={{ color: "#e11d48", fontSize: "20px", marginTop: "2px" }}>↑</div>
+                        </div>
+                      </foreignObject>
                     </svg>
 
-                    {/* Floating Labels — anchored to SVG data points */}
-                    {/* 6,000억 label → above point at ~73% from left, ~25% from top */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 1.8 }}
-                      className="absolute bg-rose-100 text-rose-600 text-xs font-black px-3 py-1.5 rounded-xl shadow-lg whitespace-nowrap"
-                      style={{ left: '65%', top: '18%', transform: 'translateX(-50%)' }}
-                    >
-                      6,000억 원
-                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-rose-100" />
-                    </motion.div>
-                    {/* 7,000억 label → above point at ~93% from left, ~10% from top */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 2.1 }}
-                      className="absolute bg-rose-700 text-white text-xs font-black px-3 py-1.5 rounded-xl shadow-xl whitespace-nowrap"
-                      style={{ left: '88%', top: '4%', transform: 'translateX(-50%)' }}
-                    >
-                      7,000억 원
-                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-rose-700" />
-                    </motion.div>
-
-                    {/* Kello 추가 수익 + Arrow annotation */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 2.4 }}
-                      className="absolute flex flex-col items-center"
-                      style={{ left: '53%', top: '45%' }}
-                    >
-                      <div className="text-rose-700 text-xs font-black text-center leading-tight mb-1">
-                        Kello와<br />추가 수익
-                      </div>
-                      <div className="text-rose-600 text-2xl animate-bounce">↑</div>
-                    </motion.div>
-                  </div>
-
-                  {/* X Axis */}
-                  <div className="absolute bottom-0 w-full flex justify-between px-8 text-sm font-bold text-muted-foreground">
-                    <span>2021</span><span>2022</span><span>2023</span><span>2024</span>
+                    {/* X Axis */}
+                    <div className="absolute bottom-0 w-full flex justify-between px-10 text-sm font-bold text-muted-foreground">
+                      <span>2021</span><span>2022</span><span>2023</span><span>2024</span>
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
         </ScrollReveal>
@@ -314,7 +324,6 @@ const KBeautyTrendSection = () => {
         </div>
       </div>
     </section>
-
   );
 };
 
