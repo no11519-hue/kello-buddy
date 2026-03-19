@@ -52,11 +52,6 @@ const RevenueGraphSection = () => {
               />
             </div>
           </ScrollReveal>
-          
-          {/* Footer Text */}
-          <p className="mt-8 text-center text-[10px] sm:text-xs text-muted-foreground font-medium break-keep px-6 lg:px-0 max-w-4xl mx-auto">
-            *외국인 관광객 프리미엄 시술(두피 스파, 펌, 아트 네일 등) 평균 객단가 15만 원 기준
-          </p>
         </div>
       </div>
     </section>
