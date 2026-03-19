@@ -14,7 +14,7 @@ import ExitIntentPopup from "@/components/ExitIntentPopup";
 import Header from "@/components/Header";
 import CherryBlossoms from "@/components/CherryBlossoms";
 import FloatingPromo from "@/components/FloatingPromo";
-import GlobalTrendSection from "@/components/GlobalTrendSection";
+import KBeautyTrendSection from "@/components/KBeautyTrendSection";
 
 const Index = () => {
   return (
@@ -23,7 +23,7 @@ const Index = () => {
       <Header />
       <FloatingPromo />
       <HeroSection />
-      <GlobalTrendSection />
+      <KBeautyTrendSection />
       <div>
         <RevenueGraphSection />
         <CustomerFlowSection />
