@@ -22,10 +22,10 @@ const GlobalTrendSection = () => {
         </ScrollReveal>
       </div>
 
-      {/* Full width image container with top crop to remove redundant title */}
+      {/* Full width image container with top crop to remove redundant title and subtitle */}
       <div className="w-full relative z-10 overflow-hidden">
         <ScrollReveal width="100%">
-          <div className="relative w-full overflow-hidden bg-[#f9ebf3] mt-[-10%] sm:mt-[-8%] md:mt-[-110px]">
+          <div className="relative w-full overflow-hidden bg-[#f9ebf3] mt-[-15%] sm:mt-[-12%] md:mt-[-165px]">
             <img 
               src="/그래프11.png" 
               alt="글로벌 관광객 유입과 K-뷰티 소비 트렌드 그래프" 
