@@ -81,8 +81,8 @@ const SocialProofSection = () => {
         <ScrollReveal width="100%">
           <div className="text-center mb-16">
             <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Trust</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground">
-              사장님이 신뢰할 수 있는 이유
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground break-keep">
+              사장님이 <br className="sm:hidden" /> 신뢰할 수 있는 이유
             </h2>
           </div>
         </ScrollReveal>
@@ -90,8 +90,8 @@ const SocialProofSection = () => {
         {/* Trust Icons */}
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16 items-stretch">
           {trustItems.map((item, i) => (
-            <ScrollReveal key={item.label} delay={i * 0.1} width="100%">
-              <div className="flex flex-col items-center p-6 bg-white rounded-3xl shadow-sm border border-border/40 text-center h-full min-h-[160px]">
+            <ScrollReveal key={item.label} delay={i * 0.1} width="100%" className="flex">
+              <div className="flex-1 flex flex-col items-center p-6 bg-white rounded-3xl shadow-sm border border-border/40 text-center min-h-[160px]">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
                   <item.icon className="h-6 w-6 text-primary" />
                 </div>

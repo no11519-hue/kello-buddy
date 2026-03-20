@@ -42,15 +42,16 @@ const HeroSection = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-foreground mb-6 break-keep drop-shadow-md">
-              외국인 손님이 매출이 됩니다
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-foreground mb-6 break-keep drop-shadow-md whitespace-nowrap sm:whitespace-normal">
+              이제, 외국인 손님이 <br className="sm:hidden" /> 매출이 됩니다
             </h1>
           </ScrollReveal>
 
           <ScrollReveal delay={0.6}>
             <p className="text-sm sm:text-base md:text-2xl text-foreground/80 leading-relaxed mb-10 font-bold max-w-4xl mx-auto break-keep">
-              <KelloText />는 외국인 관광객이 <br className="hidden md:block" />
-              한국 매장을 쉽게 예약하도록 연결합니다
+              <KelloText />는 외국인 관광객이 <br className="sm:hidden" /> 
+              한국 매장을 <br className="hidden md:block" /> 
+              쉽게 예약하도록 연결합니다
             </p>
           </ScrollReveal>
 

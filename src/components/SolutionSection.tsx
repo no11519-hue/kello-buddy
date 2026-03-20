@@ -39,8 +39,8 @@ const SolutionSection = () => {
         <ScrollReveal width="100%">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <span className="inline-block text-sm font-semibold text-primary tracking-widest uppercase mb-4">Solution</span>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 break-keep">
-              <KelloText />가 외국인 고객과<br className="hidden sm:block" />사장님을 연결해드립니다.
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-foreground mb-4 break-keep whitespace-nowrap sm:whitespace-normal">
+              <KelloText />가 외국인 고객과 <br className="sm:hidden" /> 사장님을 연결해드립니다.
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary/80 leading-tight tracking-tight break-keep pt-2">
               "노쇼 없는 100% 선결제로<br className="sm:hidden" /> 확실한 방문과 매출 보장"
@@ -48,10 +48,10 @@ const SolutionSection = () => {
           </div>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-6 max-w-6xl mx-auto items-stretch">
           {solutions.map((s, i) => (
-            <ScrollReveal key={s.title} delay={i * 0.15}>
-              <div className="glass-card rounded-3xl p-6 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center group">
+            <ScrollReveal key={s.title} delay={i * 0.15} className="flex">
+              <div className="flex-1 glass-card rounded-3xl p-6 hover:-translate-y-2 transition-transform duration-300 flex flex-col items-center text-center group min-h-[240px]">
                 <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${s.gradient} mb-5 shadow-sm group-hover:scale-110 transition-transform`}>
                   <s.icon className="h-6 w-6 text-primary-foreground" />
                 </div>

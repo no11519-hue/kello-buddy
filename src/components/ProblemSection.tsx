@@ -52,33 +52,28 @@ const ProblemSection = () => {
                 <span className="font-bold text-kello-gold text-sm md:text-base mb-2 block">신뢰 장벽</span>
                 <p className="text-foreground">"정보가 부족한 외국인들이 가격에 의심을 가지고 신뢰가 부족해요."</p>
               </div>
-              <strong className="text-primary mt-6 sm:mt-8 mb-4 block text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight drop-shadow-sm">
-                <span className="font-black bg-clip-text text-transparent" style={{ backgroundImage: "var(--kello-gradient-hero)" }}>Kello</span>는 이 문제를 완벽하게 해결합니다.
+              <strong className="text-primary mt-6 sm:mt-12 mb-4 block text-center text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight drop-shadow-sm break-keep">
+                <span className="font-black bg-clip-text text-transparent" style={{ backgroundImage: "var(--kello-gradient-hero)" }}>Kello</span>는 이 문제를 <br className="sm:hidden" /> 완벽하게 해결합니다.
               </strong>
             </div>
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 md:gap-8 max-w-5xl mx-auto items-stretch">
           {problems.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="relative glass-card rounded-3xl p-8 md:p-10 flex flex-col items-center text-center hover:-translate-y-1 transition-transform"
-            >
-              <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${p.bg} mb-6`}>
-                <p.icon className={`h-8 w-8 ${p.color}`} />
+            <ScrollReveal key={p.title} delay={i * 0.15} className="flex">
+              <div className="flex-1 relative glass-card rounded-3xl p-8 md:p-10 flex flex-col items-center text-center hover:-translate-y-1 transition-transform min-h-[120px]">
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl ${p.bg} mb-6`}>
+                  <p.icon className={`h-8 w-8 ${p.color}`} />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-black text-foreground mb-3 block">
+                  {p.title}
+                </h3>
+                <p className="text-foreground/90 font-bold text-sm sm:text-base md:text-lg leading-relaxed break-keep">
+                  {p.desc}
+                </p>
               </div>
-              <h3 className="text-xl sm:text-2xl font-black text-foreground mb-3 block">
-                {p.title}
-              </h3>
-              <p className="text-foreground/90 font-bold text-sm sm:text-base md:text-lg leading-relaxed break-keep">
-                {p.desc}
-              </p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

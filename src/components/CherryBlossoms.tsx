@@ -47,7 +47,7 @@ const CherryBlossoms = () => {
   if (bubbles.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden" aria-hidden="true">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
       {bubbles.map((bubble) => (
         <motion.div
           key={bubble.id}

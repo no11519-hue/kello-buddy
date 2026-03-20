@@ -61,10 +61,11 @@ const q4Options = [
 ] as const;
 
 const q5Options = [
-  { label: "매우 적극적", value: "very_positive" },
-  { label: "조건에 따라 가능", value: "conditional" },
-  { label: "아직 고민 중", value: "considering" },
-  { label: "관심 없음", value: "not_interested" },
+  { label: "합리적인 수수료", value: "fee" },
+  { label: "우수한 고객 품질 (객단가 등)", value: "customer_quality" },
+  { label: "예약 및 관리 편의성", value: "convenience" },
+  { label: "외국인 응대 지원 (번역 등)", value: "support" },
+  { label: "실제 매출 증대 가능성", value: "revenue" },
 ] as const;
 
 type Q1Value = (typeof q1Options)[number]["value"];
@@ -453,7 +454,7 @@ const SurveyDialog = ({
           {step === 4 && (
             <div className="space-y-3">
               <p className="font-semibold text-sm">
-                5. 플랫폼 제휴 의향은 어느 정도입니까?
+                5. 제휴 플랫폼을 선택할 때 가장 중요하게 생각하시는 기준은?
               </p>
               <RadioGroup
                 value={answers.q5}

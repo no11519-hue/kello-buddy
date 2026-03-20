@@ -87,7 +87,7 @@ const KBeautyTrendSection = () => {
         <ScrollReveal width="100%">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 break-keep">
-              글로벌 관광객 유입과 <span className="text-rose-500">K-뷰티 소비 트렌드</span>
+              글로벌 관광객 유입과 <br className="sm:hidden" /> <span className="text-rose-500">K-뷰티 소비 트렌드</span>
             </h2>
             <p className="text-lg sm:text-xl font-bold text-muted-foreground break-keep">
               외국인 관광객의 미용 서비스 이용 현황 및 지출 분석
@@ -98,8 +98,8 @@ const KBeautyTrendSection = () => {
         {/* 3 Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto items-stretch">
           {stats.map((s, i) => (
-            <ScrollReveal key={i} delay={i * 0.15} direction="up" width="100%">
-              <div className="h-full bg-white/40 backdrop-blur-md rounded-[2rem] p-8 border border-white/60 shadow-xl flex flex-col items-center text-center group hover:-translate-y-1 transition-transform min-h-[280px]">
+            <ScrollReveal key={i} delay={i * 0.15} direction="up" width="100%" className="flex">
+              <div className="flex-1 bg-white/40 backdrop-blur-md rounded-[2rem] p-8 border border-white/60 shadow-xl flex flex-col items-center text-center group hover:-translate-y-1 transition-transform min-h-[320px]">
                 <h3 className="text-base sm:text-lg font-black text-foreground/80 mb-2">{s.title}</h3>
                 <p className="text-xl sm:text-2xl font-black text-rose-500 mb-1">{s.mainVal}</p>
                 {s.subTitle && <p className="text-xs font-bold text-muted-foreground">{s.subTitle}</p>}
@@ -125,14 +125,17 @@ const KBeautyTrendSection = () => {
               <div className="bg-white/50 backdrop-blur-md rounded-3xl p-8 sm:p-10 border border-white/70 shadow-xl">
                 <div className="relative h-80 sm:h-96 mt-10">
                   {/* Y-axis labels */}
-                  {["300만", "200만", "150만", "100만", "50만", "0"].map((v, i) => (
-                    <div key={v} className="absolute left-0 text-xs font-bold text-rose-300"
-                      style={{ bottom: `${[100, 66, 50, 33, 16, 0][i]}%`, transform: "translateY(50%)" }}>
-                      {v}
-                    </div>
-                  ))}
+                  {["300만", "250만", "200만", "150만", "100만", "50만", "0"].map((v, i) => {
+                    const percentages = [100, 83.3, 66.6, 50, 33.3, 16.6, 0];
+                    return (
+                      <div key={v} className="absolute left-0 text-xs font-bold text-rose-300"
+                        style={{ bottom: `${percentages[i]}%`, transform: "translateY(50%)" }}>
+                        {v}
+                      </div>
+                    );
+                  })}
                   {/* Grid lines */}
-                  {[0, 16, 33, 50, 66, 100].map(p => (
+                  {[0, 16.6, 33.3, 50, 66.6, 83.3, 100].map(p => (
                     <div key={p} className="absolute w-full border-t border-dashed border-rose-100"
                       style={{ bottom: `${p}%`, left: "2rem" }} />
                   ))}
@@ -180,17 +183,20 @@ const KBeautyTrendSection = () => {
                 {/* Chart area */}
                 <div className="relative h-80 sm:h-96">
                   {/* Y-axis labels LEFT */}
-                  {["7000", "6000", "5000", "4000", "3000", "2000", "1000", "0"].map((v, i) => (
-                    <div key={v} className="absolute left-0 text-[10px] font-bold text-rose-300"
-                      style={{ bottom: `${100 - i * 100 / 7}%`, transform: "translateY(50%)" }}>
-                      {v}
-                    </div>
-                  ))}
+                  {["7000", "6000", "5000", "4000", "3000", "2000", "1000", "0"].map((v, i) => {
+                    const p = (parseInt(v) / 7000) * 100;
+                    return (
+                      <div key={v} className="absolute left-0 text-[10px] font-bold text-rose-300"
+                        style={{ bottom: `${p}%`, transform: "translateY(50%)" }}>
+                        {v}
+                      </div>
+                    );
+                  })}
 
                   {/* SVG — viewBox has negative top space for labels */}
                   <div className="absolute inset-0 px-10 pb-8">
                     <svg
-                      viewBox="0 -50 300 250"
+                      viewBox="0 -120 300 350"
                       className="w-full h-full overflow-visible"
                       preserveAspectRatio="none"
                     >
@@ -201,8 +207,8 @@ const KBeautyTrendSection = () => {
                         </linearGradient>
                       </defs>
 
-                      {/* Grid lines */}
-                      {[0, 28, 57, 86, 114, 143, 172, 200].map(y => (
+                      {/* Grid lines - precisely mapped to labels */}
+                      {[0, 28.57, 57.14, 85.71, 114.28, 142.85, 171.42, 200].map(y => (
                         <line key={y} x1="0" y1={y} x2="300" y2={y} stroke="#FFE4E9" strokeWidth="0.5" strokeDasharray="4,4" />
                       ))}
 
@@ -230,12 +236,12 @@ const KBeautyTrendSection = () => {
                         strokeLinejoin="round"
                       />
 
-                      {/* Data point circles */}
+                      {/* Data point circles - precisely aligned with grid lines */}
                       {[
-                        { x: 20,  y: 185 },
-                        { x: 100, y: 130 },
-                        { x: 220, y: 50  },
-                        { x: 280, y: 30  },
+                        { x: 20,  y: 171.42 }, // 1000
+                        { x: 100, y: 114.28 }, // 3000
+                        { x: 220, y: 28.57  }, // 6000
+                        { x: 280, y: 0      }, // 7000
                       ].map((p, i) => (
                         <motion.circle
                           key={i}
@@ -248,58 +254,69 @@ const KBeautyTrendSection = () => {
                         />
                       ))}
 
-                      {/* ── 6,000억 label — centered on x=220, y=50 ── */}
-                      {/* dashed connector line from label bottom to circle top */}
-                      <line x1="220" y1="25" x2="220" y2="43" stroke="#fda4af" strokeWidth="1.5" strokeDasharray="3,2" />
-                      <foreignObject x="150" y="-22" width="140" height="30">
-                        <div style={{ display: "flex", justifyContent: "center" }}>
+                      {/* ── 6,000억 label — centered on x=220, y=28.57 ── */}
+                      <line x1="220" y1="-15" x2="220" y2="23" stroke="#fda4af" strokeWidth="1.5" strokeDasharray="3,2" />
+                      <foreignObject x="150" y="-65" width="140" height="50">
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
                           <div style={{
                             background: "#ffe4e6",
                             color: "#e11d48",
                             fontSize: "12px",
                             fontWeight: 900,
-                            padding: "3px 10px",
-                            borderRadius: "10px",
+                            padding: "4px 12px",
+                            borderRadius: "12px",
                             whiteSpace: "nowrap",
-                            boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
+                            boxShadow: "0 4px 12px rgba(225,29,72,0.15)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "6px"
                           }}>
+                            <span style={{ backgroundColor: "#e11d48", color: "#fff", width: "16px", height: "16px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px" }}>?</span>
                             6,000억 원
                           </div>
                         </div>
                       </foreignObject>
 
-                      {/* ── 7,000억 label — centered on x=280, y=30 ── */}
-                      <line x1="280" y1="-4" x2="280" y2="23" stroke="#9f1239" strokeWidth="1.5" strokeDasharray="3,2" />
-                      <foreignObject x="210" y="-44" width="140" height="30">
-                        <div style={{ display: "flex", justifyContent: "center" }}>
+                      {/* ── 7,000억 label — centered on x=280, y=0 ── */}
+                      <line x1="280" y1="-55" x2="280" y2="-8" stroke="#9f1239" strokeWidth="1.5" strokeDasharray="3,2" />
+                      <foreignObject x="210" y="-105" width="140" height="50">
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }}>
                           <div style={{
                             background: "#9f1239",
                             color: "#fff",
                             fontSize: "12px",
                             fontWeight: 900,
-                            padding: "3px 10px",
-                            borderRadius: "10px",
+                            padding: "4px 12px",
+                            borderRadius: "12px",
                             whiteSpace: "nowrap",
-                            boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+                            boxShadow: "0 4px 16px rgba(159,18,57,0.3)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "6px"
                           }}>
+                            <span style={{ backgroundColor: "#fff", color: "#9f1239", width: "16px", height: "16px", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px" }}>?</span>
                             7,000억 원
                           </div>
                         </div>
                       </foreignObject>
 
                       {/* Kello와 추가 수익 annotation — centered between 2023-2024 */}
-                      <foreignObject x="120" y="80" width="120" height="60">
-                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                      <foreignObject x="100" y="70" width="160" height="80">
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%" }}>
                           <div style={{
                             color: "#9f1239",
                             fontSize: "13px",
                             fontWeight: 900,
                             textAlign: "center",
                             lineHeight: 1.3,
+                            backgroundColor: "rgba(255,255,255,0.7)",
+                            padding: "4px 8px",
+                            borderRadius: "8px",
+                            backdropFilter: "blur(2px)"
                           }}>
                             Kello와<br />추가 수익
                           </div>
-                          <div style={{ color: "#e11d48", fontSize: "20px", marginTop: "2px" }}>↑</div>
+                          <div style={{ color: "#e11d48", fontSize: "20px", marginTop: "1px", fontWeight: "bold" }}>↑</div>
                         </div>
                       </foreignObject>
                     </svg>
